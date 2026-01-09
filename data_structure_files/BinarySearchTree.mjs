@@ -1,4 +1,4 @@
-import BinaryNode from './BinaryNode.mjs'
+import BinaryNode from './BinaryNode.mjs';
 
 class BinarySearchTree {
 
