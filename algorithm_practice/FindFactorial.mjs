@@ -7,6 +7,12 @@
 * 		a stack overflow
 **/
 const findFactorialRecursive = (number) => {
+    if(number < 0) {
+        return;
+    }
+    if(number === 0) {
+        return 1;
+    }
     if(number <= 2) {
         return number;
     } 
@@ -15,6 +21,12 @@ const findFactorialRecursive = (number) => {
 }
 
 const findFactorialIterative = (number) => {
+    if(number < 0) {
+        return;
+    }
+    if(number === 0) {
+        return 1;
+    }
     let factorial = number;
     while(number > 2) {
         number--;
