@@ -1,6 +1,6 @@
 const fibonacciRecursive = (n) => {
     if(n < 0) {
-        return;
+        return false;
     }
     
     if(n < 2) {
@@ -12,23 +12,21 @@ const fibonacciRecursive = (n) => {
 
 const fibonacciIterative = (n) => {
     if(n < 0) {
-        return;
+        return false;
     }
     
     if(n < 2) {
         return n;
     }
     
-    let prev = 0;
-    let current = 1;
-    let next = 1;
+    let prev = 0, current = 1, sum = 1;
     for(let i = 2; i < n; i++) {
         prev = current;
-        current = next;
-        next = current + prev;
+        current = sum;
+        sum = current + prev;
     }
     
-    return next;
+    return sum;
 }
 
 export {fibonacciRecursive, fibonacciIterative};
