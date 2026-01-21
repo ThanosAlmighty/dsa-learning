@@ -90,7 +90,7 @@ class BinarySearchTree {
 			return [currentNode, parentNode];
 		}
 		
-		return this._lookupWithParent_recursive(_getNextByValue(value, currentNode), value, currentNode);
+		return this._lookupWithParent_recursive(value, this._getNextByValue(value, currentNode), currentNode);
 	}
 	
 	lookup_recursive(value) {
@@ -135,7 +135,12 @@ class BinarySearchTree {
         return tree;
     }
     
-    
+    traverse(node = this.root) {
+        const tree = { value: node.value, left: null, right: null };
+        tree.left = node.left === null ? null : this.traverse(node.left);
+        tree.right = node.right === null ? null : this.traverse(node.right);
+        return tree;
+    }
 }
 
 export default BinarySearchTree;
