@@ -12,8 +12,13 @@ const bubbleSort = (array) => {
 }
 
 const selectionSort = (array) => {
-    let indexOfSmallest;
-    let temp;
+    if (!Array.isArray(array)) {
+        return false;
+    }
+	if(array.length < 2) {
+		return;
+	}
+	let indexOfSmallest;
     for (let i = 0; i < array.length; i++) {
         indexOfSmallest = i;
         for (let j = i + 1; j < array.length; j++) {
@@ -21,21 +26,24 @@ const selectionSort = (array) => {
                 indexOfSmallest = j;
             }
         }
-        temp = array[i];
-        array[i] = array[indexOfSmallest];
-        array[indexOfSmallest] = temp;
+		if(indexOfSmallest !== i) {
+		    [array[i],array[indexOfSmallest]] = [array[indexOfSmallest],array[i]];
+		}
     }
 }
 
 const insertionSort = (array) => {
-    let temp;
+    if (!Array.isArray(array)) {
+        return false;
+    }
+	if(array.length < 2) {
+		return;
+	}
     let j;
     for (let i = 1; i < array.length; i++) {
         j = i;
         while (j > 0 && array[j] < array[j - 1]) {
-            temp = array[j];
-            array[j] = array[j - 1];
-            array[j - 1] = temp;
+            [array[j - 1], array[j]] = [array[j], array[j - 1]];
             j--;
         }
     }
