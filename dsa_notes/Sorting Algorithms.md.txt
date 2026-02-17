@@ -1,0 +1,21 @@
+#Sorting Algorithms
+
+##Bubble Sort
+* <ins>Description</ins>: "Bubbles" values to the top of the list through nested iteration and comparison
+* <ins>Time Complexity</ins>: O(n^2) due to the nested iterations
+* <ins>Space Complexity</ins>: O(1) since the sorting is done in-place
+* <ins>Use Case</ins>: Introduction to sorting only - there are many other algorithms that outperform bubble sort (or, in worst case, equal to)
+
+##Selection Sort
+* <ins>Description</ins>: 
+* <ins>Time Complexity</ins>: O(n^2) due to the nested iterations
+* <ins>Space Complexity</ins>: O(1) since the sorting is done in-place
+* <ins>Use Case</ins>: Introduction to sorting only - there are many other algorithms that outperform bubble sort (or, in worst case, equal to)
+
+##Insertion Sort
+
+##Merge Sort
+
+##Quick Sort
+
+##Radix/Counting Sort

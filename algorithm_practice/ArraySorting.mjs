@@ -1,13 +1,19 @@
 const bubbleSort = (array) => {
+    let swapHappened;
     for (let i = 0; i < array.length; i++) {
+		swapHappened = false;
         for (let j = 0; j < array.length - i; j++) {
             if (array[j] > array[j + 1]) {
                 //Swap the numbers
                 let temp = array[j]
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
+				swapHappened = true;
             }
         }
+		if(!swapHappened) {
+		  return;
+		}
     }
 }
 
@@ -40,12 +46,16 @@ const insertionSort = (array) => {
 		return;
 	}
     let j;
+	let current;
     for (let i = 1; i < array.length; i++) {
-        j = i;
-        while (j > 0 && array[j] < array[j - 1]) {
-            [array[j - 1], array[j]] = [array[j], array[j - 1]];
+        current = array[i];
+		j = i - 1;
+        while (j >= 0 && array[j] > current) {
+            array[j + 1] = array[j];
             j--;
         }
+		
+		array[j + 1] = current;
     }
 }
 
