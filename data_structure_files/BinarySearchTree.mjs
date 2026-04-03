@@ -141,6 +141,31 @@ class BinarySearchTree {
         tree.right = node.right === null ? null : this.traverse(node.right);
         return tree;
     }
+    
+    traverseInValueOrder(startNode = this.root) {
+        const list = [];
+        const stack = [startNode];
+        let curr = startNode;
+        
+        while(stack.length > 0) {
+            if(!curr) {
+                curr = stack.pop();
+                list.push(curr.value);
+                curr = curr.right;
+            } else if(curr.left) {
+                curr = curr.left;
+            } else {
+                list.push(stack.pop().value);
+                curr = curr.right;
+            } 
+            
+            if(curr) {
+                stack.push(curr);
+            }
+        }
+        
+        return list;
+    }
 }
 
 export default BinarySearchTree;
