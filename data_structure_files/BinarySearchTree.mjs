@@ -142,84 +142,63 @@ class BinarySearchTree {
         return tree;
     }
     
-    traverseInValueOrder(startNode = this.root) {
+    traverseInValueOrder(root = this.root) {
+        if(!root) {
+            return [];
+        }
         const list = [];
-        const stack = [startNode];
-        let curr = startNode;
+        const stack = [];
         
-        while(stack.length > 0) {
-            if(!curr) {
-                curr = stack.pop();
-                list.push(curr.value);
-                curr = curr.right;
-            } else if(curr.left) {
-                curr = curr.left;
-            } else {
-                list.push(stack.pop().value);
-                curr = curr.right;
-            } 
-            
-            if(curr) {
-                stack.push(curr);
-            }
+        while(stack.length > 0 || root) {
+			while(root) {
+				stack.push(root);
+				root = root.left;
+			}
+			root = stack.pop();
+			list.push(root.value);
+            root = root.right;
         }
         
         return list;
     }
     
-    traversePreOrder(startNode = this.root) {
-        const list = [startNode.value];
-        const stack = [startNode];
-        let curr = startNode;
+    traversePreOrder(root = this.root) {
+        if(!root) {
+            return [];
+        }
+        const list = [];
+        const stack = [];
         
-        while(stack.length > 0) {
-            if(!curr) {
-                curr = stack.pop().right;
-            } else if(curr.left) {
-                curr = curr.left;
-            } else {
-                curr = curr.right;
-            } 
-            
-            if(curr) {
-                stack.push(curr);
-                list.push(curr.value);
+        while(stack.length > 0 || root) {
+            while(root) {
+                list.push(root.value);
+                stack.push(root);
+                root = root.left;
             }
+            root = stack.pop().right;
         }
         
         return list;
     }
     
-    traversePostOrder(startNode = this.root) {
+    traversePostOrder(root = this.root) {
         const list = [];
-        const stack = [startNode];
-        const visitedChildren = new Set();    
-        let curr;
+        const stack = [];
+        let lastVisited = null;
+        let peeked = null;
         
-        while(stack.length > 0) {
-            curr = stack[stack.length - 1];
-            if(
-                (!curr.right || visitedChildren.has(curr.right)) 
-                && 
-                (!curr.left || visitedChildren.has(curr.left))
-            ) {
-              if(curr.right) {
-                visitedChildren.delete(curr.right);
-              }
-              if(curr.left) {
-                visitedChildren.delete(curr.left);
-              }
-              visitedChildren.add(curr);
-              list.push(curr.value);
-              stack.pop();
-              continue;
+        while(stack.length > 0 || root) {
+            while(root) {
+                stack.push(root);
+                root = root.left;
+            }
+            
+            peeked = stack[stack.length - 1];
+            if(peeked.right && lastVisited !== peeked.right) {
+                root = peeked.right;
             } else {
-                if(curr.right && !visitedChildren.has(curr.right)) {
-                    stack.push(curr.right);
-                } 
-                if(curr.left && !visitedChildren.has(curr.left)) {
-                    stack.push(curr.left);
-                }
+                list.push(peeked.value);
+                lastVisited = stack.pop();
             }
         }
         
